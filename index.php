@@ -78,6 +78,10 @@ $analyze_results = [
     'title' => 'The time it took to process the text in ms',
     'result' => (microtime(TRUE) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000 ?: 'not calculated because of 0ms',
   ],
+  [
+    'title' => 'Hash',
+    'result' => $analyze->calculateHash($text),
+  ],
 ];
 
 ?>

@@ -265,4 +265,9 @@ class Analyzer
     }
   }
 
+  // Calculate a hash for the text
+  public function calculateHash(string $text)
+  {
+    return hash('ripemd160', $text);
+  }
 }
