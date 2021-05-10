@@ -1,0 +1,14 @@
+{
+  "require": {
+    "php": "^7.2",
+    "phpunit/phpunit": "^9.5",
+    "ext-mbstring": "*"
+  },
+  "autoload": {
+    "classmap": [
+      "Analyzer.php"
+    ]
+  },
+  "name": "andrew-lviv/analyzer-text",
+  "description": "Text Analyzer"
+}
