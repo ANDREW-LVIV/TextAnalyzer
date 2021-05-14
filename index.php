@@ -28,11 +28,17 @@ $analyze_results = [
   ],
   [
     'title' => 'Average word length',
-    'result' => $analyze->averageWordLength($text),
+    'result' => sprintf(
+      "The average word length is %.02f characters",
+      $analyze->averageWordLength($text)
+    ),
   ],
   [
     'title' => 'The average number of words in a sentence',
-    'result' => $analyze->averageNumberOfWordsInSentence($text),
+    'result' => sprintf(
+      "The average number of words in a sentence %.02f",
+      $analyze->averageNumberOfWordsInSentence($text)
+    ),
   ],
   [
     'title' => 'Top 10 most used words',
@@ -48,11 +54,11 @@ $analyze_results = [
   ],
   [
     'title' => 'Top 10 longest sentences',
-    'result' => $analyze->mostLongestSentences($text, 'long', 10),
+    'result' => $analyze->mostLongestShortestSentences($text, 'long', 10),
   ],
   [
     'title' => 'Top 10 shortest sentences',
-    'result' => $analyze->mostLongestSentences($text, 'short', 10),
+    'result' => $analyze->mostLongestShortestSentences($text, 'short', 10),
   ],
   [
     'title' => 'Number of palindrome words',
