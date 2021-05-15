@@ -15,6 +15,7 @@ class CreateWordsListArrayTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->createWordsListArray($input));
+      $this->assertIsArray($analyze->createWordsListArray($input));
     }
 
   public function textDataProvider()

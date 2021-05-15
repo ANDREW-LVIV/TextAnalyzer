@@ -15,6 +15,7 @@ class IsWholeTextPalindromeTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->isWholeTextPalindrome($input));
+      $this->assertIsString($analyze->isWholeTextPalindrome($input));
     }
 
   public function textDataProvider()

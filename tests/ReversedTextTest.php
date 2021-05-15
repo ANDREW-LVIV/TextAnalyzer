@@ -15,6 +15,7 @@ class ReversedTextTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->reversedText($input));
+      $this->assertIsString($analyze->reversedText($input));
     }
 
   public function textDataProvider()

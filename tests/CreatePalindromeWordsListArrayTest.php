@@ -15,6 +15,7 @@ class CreatePalindromeWordsListArrayTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->createPalindromeWordsListArray($input));
+      $this->assertIsArray($analyze->createPalindromeWordsListArray($input));
     }
 
   public function textDataProvider()

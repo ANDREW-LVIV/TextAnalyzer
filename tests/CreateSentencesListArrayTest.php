@@ -15,6 +15,7 @@ class CreateSentencesListArrayTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->createSentencesListArray($input));
+      $this->assertIsArray($analyze->createSentencesListArray($input));
     }
 
   public function textDataProvider()

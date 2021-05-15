@@ -15,6 +15,7 @@ class NumberOfSentencesTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->numberOfSentences($input));
+      $this->assertIsInt($analyze->numberOfSentences($input));
     }
 
   public function textDataProvider()

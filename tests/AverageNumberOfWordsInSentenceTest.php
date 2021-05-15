@@ -15,6 +15,7 @@ class AverageNumberOfWordsInSentenceTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->averageNumberOfWordsInSentence($input));
+      $this->assertIsNumeric($analyze->averageNumberOfWordsInSentence($input));
     }
 
   public function textDataProvider()

@@ -15,6 +15,7 @@ class MostLongestPalindromeWordsTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->mostLongestPalindromeWords($input));
+      $this->assertIsString($analyze->mostLongestPalindromeWords($input));
     }
 
   public function textDataProvider()

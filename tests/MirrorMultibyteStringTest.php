@@ -15,6 +15,7 @@ class MirrorMultibyteStringTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->mirrorMultibyteString($input));
+      $this->assertIsString($analyze->mirrorMultibyteString($input));
     }
 
   public function textDataProvider()

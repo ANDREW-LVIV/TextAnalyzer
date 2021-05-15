@@ -15,6 +15,7 @@ class FrequencyOfCharactersArrayTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->frequencyOfCharactersArray($input));
+      $this->assertIsArray($analyze->frequencyOfCharactersArray($input));
     }
 
   public function textDataProvider()

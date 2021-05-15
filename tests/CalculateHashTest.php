@@ -15,6 +15,7 @@ class calculateHashTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->calculateHash($input));
+      $this->assertIsString($analyze->calculateHash($input));
     }
 
   public function textDataProvider()

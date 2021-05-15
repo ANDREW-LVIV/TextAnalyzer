@@ -15,6 +15,7 @@ class AverageWordLengthTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->averageWordLength($input));
+      $this->assertIsNumeric($analyze->averageWordLength($input));
     }
 
   public function textDataProvider()

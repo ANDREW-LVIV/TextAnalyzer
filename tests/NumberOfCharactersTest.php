@@ -15,6 +15,7 @@ class NumberOfCharactersTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->numberOfCharacters($input));
+      $this->assertIsInt($analyze->numberOfCharacters($input));
     }
 
   public function textDataProvider()

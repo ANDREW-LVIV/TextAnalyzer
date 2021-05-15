@@ -15,6 +15,7 @@ class NumberOfPalindromeWordsTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->numberOfPalindromeWords($input));
+      $this->assertIsInt($analyze->numberOfPalindromeWords($input));
     }
 
   public function textDataProvider()

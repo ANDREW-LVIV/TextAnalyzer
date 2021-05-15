@@ -15,6 +15,7 @@ class MostUsedWordsTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->mostUsedWords($input, 10));
+      $this->assertIsString($analyze->mostUsedWords($input, 10));
     }
 
   public function textDataProvider()

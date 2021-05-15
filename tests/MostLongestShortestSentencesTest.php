@@ -15,6 +15,7 @@ class MostLongestShortestSentencesTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->mostLongestShortestSentences($input, 'long'));
+      $this->assertIsString($analyze->mostLongestShortestSentences($input, 'long'));
     }
 
   /**
@@ -27,6 +28,7 @@ class MostLongestShortestSentencesTest extends TestCase
   {
     $analyze = new TextAnalyzer\Analyzer();
     $this->assertEquals($expected, $analyze->mostLongestShortestSentences($input, 'short'));
+    $this->assertIsString($analyze->mostLongestShortestSentences($input, 'short'));
   }
 
   public function textLongDataProvider()

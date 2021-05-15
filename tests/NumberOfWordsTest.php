@@ -15,6 +15,7 @@ class NumberOfWordsTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->numberOfWords($input));
+      $this->assertIsInt($analyze->numberOfWords($input));
     }
 
   public function textDataProvider()

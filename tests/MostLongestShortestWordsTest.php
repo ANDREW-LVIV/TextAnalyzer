@@ -15,6 +15,7 @@ class MostLongestShortestWordsTest extends TestCase
     {
       $analyze = new TextAnalyzer\Analyzer();
       $this->assertEquals($expected, $analyze->mostLongestShortestWords($input, 'long'));
+      $this->assertIsString($analyze->mostLongestShortestWords($input, 'long'));
     }
 
   /**
@@ -27,6 +28,7 @@ class MostLongestShortestWordsTest extends TestCase
   {
     $analyze = new TextAnalyzer\Analyzer();
     $this->assertEquals($expected, $analyze->mostLongestShortestWords($input, 'short'));
+    $this->assertIsString($analyze->mostLongestShortestWords($input, 'short'));
   }
 
   public function textLongDataProvider()
