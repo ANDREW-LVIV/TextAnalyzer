@@ -11,7 +11,7 @@ class Analyzer
     $text = mb_strtolower($text);
     $text = str_replace("\r\n", " ", $text);
     $text = preg_replace("/\b\S\b/", "", $text);
-    $text = preg_replace('/[^\p{L} -]/u', '', $text);
+    $text = preg_replace("/[^'\p{L} -]/u", "", $text);
     $match_words = preg_split('/\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
     foreach ($match_words as $key => $item) {
       $item = trim($item);
@@ -26,7 +26,7 @@ class Analyzer
   // Creates Sentences List Array
   public function createSentencesListArray(string $text)
   {
-    preg_match_all('#([\p{L}].*?[.!?])(?!\p{L})#ui', $text, $sentences);
+    preg_match_all('#([\p{L}|0-9].*?[.!?])(?!\p{L}|[0-9])#ui', $text, $sentences);
     return $sentences[0];
   }
 
@@ -37,7 +37,7 @@ class Analyzer
     $words_arr = array_unique($words_arr);
 
     $palindrome_words = [];
-    foreach ($words_arr as $key => $value) {
+    foreach ($words_arr as $value) {
       if ($value == $this->reversedText($value)) {
         $palindrome_words[] = $value;
       }
@@ -65,11 +65,11 @@ class Analyzer
   // Number of sentences
   public function numberOfSentences(string $text)
   {
-    return preg_match_all('#[^\s]([.!?])(?!\p{L})#ui', $text, $match);
+    return preg_match_all('#[^\s]([.!?]+(.)|[.!?])(?!\w)#ui', $text, $match);
   }
 
   // Frequency of characters & Distribution of characters as a percentage of total
-  public function frequencyOfCharacters(string $text)
+  public function frequencyOfCharactersArray(string $text)
   {
     $text = mb_strtoupper($text);
     $unique = [];
@@ -93,12 +93,28 @@ class Analyzer
     arsort($unique);
     $max_value = $unique ? max($unique) : null;
 
-    $result = '<table>';
-    $result .= '<tr><td>Character</td><td>Frequency</td><td>Percentage</td></tr>';
+    $array = [];
     foreach ($unique as $character => $number) {
       $percentage = round($number / $max_value * 100, 1);
       $character = str_replace(" ", 'space', $character);
-      $result .= '<tr><td>' . $character . '</td><td>' . $number . '</td><td>' . $percentage . '</td></tr>';
+      $array[] = [
+        'character' => $character,
+        'number' => $number,
+        'percentage' => $percentage,
+      ];
+    }
+
+    return $array;
+  }
+
+  // Frequency of characters & Distribution of characters as a percentage of total. Formatted output
+  public function frequencyOfCharacters(string $text)
+  {
+    $array = $this->frequencyOfCharactersArray($text);
+    $result = '<table>';
+    $result .= '<tr><td>Character</td><td>Frequency</td><td>Percentage</td></tr>';
+    foreach ($array as $item) {
+      $result .= '<tr><td>' . $item['character'] . '</td><td>' . $item['number'] . '</td><td>' . $item['percentage'] . '</td></tr>';
     }
     $result .= '</table>';
 
@@ -120,10 +136,7 @@ class Analyzer
       $word_length += mb_strlen($word);
     }
 
-    return sprintf(
-      "The average word length is %.02f characters",
-      $word_length / $word_count
-    );
+    return round($word_length / $word_count, 2);
   }
 
   // Top X most used words
@@ -180,17 +193,14 @@ class Analyzer
     }
 
     if ($word_count < 1) {
-      return '';
+      return 0;
     }
 
-    return sprintf(
-      "The average number of words in a sentence %.02f",
-      $word_length / $word_count
-    );
+    return round($word_length / $word_count, 2);
   }
 
   // Top X longest words & shortest sentences
-  public function mostLongestSentences(
+  public function mostLongestShortestSentences(
     string $text,
     string $rule = null,
     int $max_count = 10
@@ -258,6 +268,8 @@ class Analyzer
   // Is the whole text a palindrome? (Without whitespaces and punctuation marks)
   public function isWholeTextPalindrome(string $text)
   {
+    $text = preg_replace("/[^\p{L}-]/u", "", $text);
+    $text = mb_strtolower($text);
     if ($text == $this->reversedText($text)) {
       return 'Yes';
     } else {
@@ -268,6 +280,6 @@ class Analyzer
   // Calculate a hash for the text
   public function calculateHash(string $text)
   {
-    return hash('ripemd160', $text);
+    return hash('haval160,4', $text);
   }
 }
