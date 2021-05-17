@@ -37,7 +37,7 @@ class Analyzer
     $words_arr = array_unique($words_arr);
 
     $palindrome_words = [];
-    foreach ($words_arr as $key => $value) {
+    foreach ($words_arr as $value) {
       if ($value == $this->reversedText($value)) {
         $palindrome_words[] = $value;
       }
@@ -280,6 +280,6 @@ class Analyzer
   // Calculate a hash for the text
   public function calculateHash(string $text)
   {
-    return hash('ripemd160', $text);
+    return hash('haval160,4', $text);
   }
 }

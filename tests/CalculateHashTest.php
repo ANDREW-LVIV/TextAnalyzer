@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class calculateHashTest extends TestCase
+class CalculateHashTest extends TestCase
 {
 
   /**
@@ -21,9 +21,9 @@ class calculateHashTest extends TestCase
   public function textDataProvider()
   {
     return [
-      ['текст', '9c3be446b6247e1110062439f0956f69accf2c51'],
+      ['текст', 'e481113f85a89878a87d52b22c7f917d6e7280e6'],
       ['lviv.travel - Плануй подорож до Львова! Корисні поради та цікава інформація про те, куди піти в місті. Події, заклади, музеї та маршрути.',
-        '900bfe9ac439d50d5914a43f6f0af82548ac4455'],
+        'c868d5fc53046e7a32b2600da89b377ea09c42f2'],
     ];
   }
 
