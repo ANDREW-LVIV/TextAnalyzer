@@ -7,7 +7,7 @@ class ExternalContent
     public function getContent(string $url)
     {
         if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
-            $url = "http://" . $url;
+            $url = "https://" . $url;
         }
         if ($this->isDomainAvailible($url)) {
             return file_get_contents($url);
