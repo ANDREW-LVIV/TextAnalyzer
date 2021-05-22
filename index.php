@@ -6,7 +6,6 @@ require __DIR__.'/vendor/autoload.php';
 
 $analyze = new TextAnalyzer\Analyzer();
 $analyzeFile = new TextAnalyzer\FileUpload();
-//$exportReport = new TextAnalyzer\ExportReport();
 
 $error = '';
 
@@ -102,12 +101,6 @@ $analyze_results = [
     'result' => $analyze->calculateHash($text),
   ],
 ];
-
-//if(isset($_POST["submit_report"])) {
-//    if($_POST["export"] === 'csv') {
-//      $exportReport->export($analyze_results, 'csv');
-//    }
-//}
 
 ?>
 
