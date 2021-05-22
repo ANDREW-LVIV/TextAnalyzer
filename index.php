@@ -1,11 +1,22 @@
 <?php
-require __DIR__.'/vendor/autoload.php';
-
-$analyze = new TextAnalyzer\Analyzer();
 
 header('Content-Type: text/html; charset=utf-8');
 
-$text = $_POST['text'] ?? '';
+require __DIR__.'/vendor/autoload.php';
+
+$analyze = new TextAnalyzer\Analyzer();
+$analyzeFile = new TextAnalyzer\FileUpload();
+$error = '';
+
+if(isset($_POST["submit_file"])) {
+  $text = $analyzeFile->upload();
+  if(!$text) {
+    $error = "<p class='error'>File type is not allowed!</p>";
+  }
+}else{
+  $text = $_POST['text'] ?? '';
+}
+
 $text = trim($text);
 $time = date("Y-m-d H:i:s");
 
@@ -108,14 +119,23 @@ $analyze_results = [
   </div>
 
   <div class="main">
-    <form action="" method="POST">
-      <textarea type="text" name="text" rows="8"
-        placeholder="Enter text to analyze"><?= htmlspecialchars($text); ?></textarea><br/>
+      <form action="index.php" method="POST">
+        <textarea type="text" name="text" rows="8"
+                placeholder="Enter text to analyze"><?= htmlspecialchars($text); ?>
+        </textarea>
+        <br/>
         <input type="submit" value="analyze text">
       </form>
-    </div>
+      <form action="index.php" method="POST" enctype="multipart/form-data">
+        <br>
+        <input type="file" name="file" id="file">
+        <input type="submit" value="Submit" name="submit_file">
+        <p>Supported files: TXT, XML, HTML, HTM</p>
+        <?=$error?>
+      </form>
+  </div>
 
-    <?php if ($text): ?>
+   <?php if ($text): ?>
       <div class="results">
         <h3>Statistical information</h3>
 
@@ -129,7 +149,7 @@ $analyze_results = [
           Report was generated: <?= $time; ?>
         </div>
       </div>
-    <?php endif; ?>
+   <?php endif; ?>
 
   </body>
 </html>

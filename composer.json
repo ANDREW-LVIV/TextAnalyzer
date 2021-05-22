@@ -2,11 +2,13 @@
   "require": {
     "php": "^7.3",
     "phpunit/phpunit": "^9.5",
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+    "ext-fileinfo": "*"
   },
   "autoload": {
     "classmap": [
-      "Analyzer.php"
+      "Analyzer.php",
+      "FileUpload.php"
     ]
   },
   "name": "andrew-lviv/analyzer-text",
