@@ -4,13 +4,16 @@
     "phpunit/phpunit": "^9.5",
     "ext-mbstring": "*",
     "ext-fileinfo": "*",
-    "phpoffice/phpspreadsheet": "^1.17"
+    "phpoffice/phpspreadsheet": "^1.17",
+    "ext-curl": "*",
+    "ext-simplexml": "*"
   },
   "autoload": {
     "classmap": [
       "src/Analyzer.php",
       "src/FileUpload.php",
-      "src/ExportReport.php"
+      "src/ExportReport.php",
+      "src/ExternalContent.php"
     ]
   },
   "name": "andrew-lviv/analyzer-text",

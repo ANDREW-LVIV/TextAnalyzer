@@ -6,14 +6,21 @@ require __DIR__.'/vendor/autoload.php';
 
 $analyze = new TextAnalyzer\Analyzer();
 $analyzeFile = new TextAnalyzer\FileUpload();
+$analyzeByUrl = new TextAnalyzer\ExternalContent();
 
 $error = '';
+$url = $_POST['text_url'] ?? '';
 
 if(isset($_POST["submit_file"])) {
   $text = $analyzeFile->upload();
   if(!$text) {
     $error = "<p class='error'>File type is not allowed!</p>";
   }
+}elseif(isset($_POST["submit_url"]) && $url){
+    $text = $analyzeByUrl->getContent($url);
+    if(!$text) {
+        $error = "<p class='error'>Not a valid URL!</p>";
+    }
 }else{
   $text = $_POST['text'] ?? '';
 }
@@ -54,23 +61,23 @@ $analyze_results = [
   ],
   [
     'title' => 'Top 10 most used words',
-    'result' => $analyze->mostUsedWords($text, 10),
+    'result' => htmlspecialchars($analyze->mostUsedWords($text, 10)),
   ],
   [
     'title' => 'Top 10 longest words',
-    'result' => $analyze->mostLongestShortestWords($text, 'long', 10),
+    'result' => htmlspecialchars($analyze->mostLongestShortestWords($text, 'long', 10)),
   ],
   [
     'title' => 'Top 10 shortest words',
-    'result' => $analyze->mostLongestShortestWords($text, 'short', 10),
+    'result' => htmlspecialchars($analyze->mostLongestShortestWords($text, 'short', 10)),
   ],
   [
     'title' => 'Top 10 longest sentences',
-    'result' => $analyze->mostLongestShortestSentences($text, 'long', 10),
+    'result' => htmlspecialchars($analyze->mostLongestShortestSentences($text, 'long', 10)),
   ],
   [
     'title' => 'Top 10 shortest sentences',
-    'result' => $analyze->mostLongestShortestSentences($text, 'short', 10),
+    'result' => htmlspecialchars($analyze->mostLongestShortestSentences($text, 'short', 10)),
   ],
   [
     'title' => 'Number of palindrome words',
@@ -78,7 +85,7 @@ $analyze_results = [
   ],
   [
     'title' => 'Top 10 longest palindrome words',
-    'result' => $analyze->mostLongestPalindromeWords($text, 'long', 10),
+    'result' => htmlspecialchars($analyze->mostLongestPalindromeWords($text, 'long', 10)),
   ],
   [
     'title' => 'Is the whole text a palindrome? (Without whitespaces and punctuation marks)',
@@ -86,11 +93,11 @@ $analyze_results = [
   ],
   [
     'title' => 'The reversed text',
-    'result' => $analyze->reversedText($text),
+    'result' => htmlspecialchars($analyze->reversedText($text)),
   ],
   [
     'title' => 'The reversed text but the character order in words kept intact',
-    'result' => $analyze->mirrorMultibyteString($text),
+    'result' => htmlspecialchars($analyze->mirrorMultibyteString($text)),
   ],
   [
     'title' => 'The time it took to process the text in ms',
@@ -120,19 +127,24 @@ $analyze_results = [
   </div>
 
   <div class="main">
+      <?=$error?>
       <form action="index.php" method="POST">
         <textarea type="text" name="text" rows="8"
-                placeholder="Enter text to analyze"><?= htmlspecialchars($text); ?>
-        </textarea>
+           placeholder="Enter text to analyze"><?= htmlspecialchars($text); ?></textarea>
         <br/>
         <input type="submit" value="analyze text">
       </form>
+      <br/><br/>
       <form action="index.php" method="POST" enctype="multipart/form-data">
         <br>
         <input type="file" name="file" id="file">
         <input type="submit" value="Submit" name="submit_file">
         <p>Supported files: TXT, XML, HTML, HTM</p>
-        <?=$error?>
+      </form>
+      <br/><br/>
+      <form action="index.php" method="POST">
+        <input type="text" name="text_url" size="50" value="<?= htmlspecialchars($url); ?>">
+          <input type="submit" name="submit_url" value="get content via url">
       </form>
   </div>
 
