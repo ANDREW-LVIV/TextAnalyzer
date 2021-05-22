@@ -3,12 +3,14 @@
     "php": "^7.3",
     "phpunit/phpunit": "^9.5",
     "ext-mbstring": "*",
-    "ext-fileinfo": "*"
+    "ext-fileinfo": "*",
+    "phpoffice/phpspreadsheet": "^1.17"
   },
   "autoload": {
     "classmap": [
-      "Analyzer.php",
-      "FileUpload.php"
+      "src/Analyzer.php",
+      "src/FileUpload.php",
+      "src/ExportReport.php"
     ]
   },
   "name": "andrew-lviv/analyzer-text",

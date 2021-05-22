@@ -46,7 +46,8 @@ textarea {
 }
 
 input[type="submit"],
-input[type="file"] {
+input[type="file"],
+select {
     border: none;
     background-color: lightgrey;
     color: #666;

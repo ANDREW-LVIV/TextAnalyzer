@@ -6,6 +6,8 @@ require __DIR__.'/vendor/autoload.php';
 
 $analyze = new TextAnalyzer\Analyzer();
 $analyzeFile = new TextAnalyzer\FileUpload();
+//$exportReport = new TextAnalyzer\ExportReport();
+
 $error = '';
 
 if(isset($_POST["submit_file"])) {
@@ -101,6 +103,12 @@ $analyze_results = [
   ],
 ];
 
+//if(isset($_POST["submit_report"])) {
+//    if($_POST["export"] === 'csv') {
+//      $exportReport->export($analyze_results, 'csv');
+//    }
+//}
+
 ?>
 
 <!DOCTYPE html>
@@ -148,6 +156,17 @@ $analyze_results = [
         <div class="report">
           Report was generated: <?= $time; ?>
         </div>
+          <div class="report">
+              <form action="load-report.php" method="POST">
+                  <input type="hidden" name="analyzed_text" value="<?= base64_encode(serialize($analyze_results)); ?>">
+                  <select name="export">
+                      <option value="csv">CSV</option>
+                      <option value="xml">XML</option>
+                      <option value="xlsx">XLSX</option>
+                  </select>
+                  <input type="submit" name="submit_report" value="Download Report">
+              </form>
+          </div>
       </div>
    <?php endif; ?>
 
