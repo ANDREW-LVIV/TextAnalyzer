@@ -163,7 +163,7 @@ $analyze_results = [
         </div>
           <div class="report">
               <form action="load-report.php" method="POST">
-                  <input type="hidden" name="analyzed_text" value="<?= base64_encode(serialize($analyze_results)); ?>">
+                  <input type="hidden" name="analyzed_text" value="<?= base64_encode(json_encode($analyze_results)); ?>">
                   <select name="export">
                       <option value="csv">CSV</option>
                       <option value="xml">XML</option>
