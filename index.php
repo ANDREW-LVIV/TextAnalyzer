@@ -28,7 +28,9 @@ if(isset($_POST["submit_file"])) {
 $text = trim($text);
 $time = date("Y-m-d H:i:s");
 
-$analyze_results = [
+$textHash = $analyze->calculateHash($text);
+
+$analyze_results = isset($_COOKIE[$textHash]) ? json_decode($_COOKIE[$textHash], true) : [
   [
     'title' => 'Number of characters:',
     'result' => $analyze->numberOfCharacters($text),
@@ -105,9 +107,14 @@ $analyze_results = [
   ],
   [
     'title' => 'Hash',
-    'result' => $analyze->calculateHash($text),
+    'result' => $textHash,
   ],
 ];
+
+// setting cookie
+if(!isset($_COOKIE[$textHash])) {
+    setcookie($textHash, json_encode($analyze_results), time() + (86400 * 30), "/");
+}
 
 ?>
 

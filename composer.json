@@ -6,7 +6,8 @@
     "ext-fileinfo": "*",
     "phpoffice/phpspreadsheet": "^1.17",
     "ext-curl": "*",
-    "ext-simplexml": "*"
+    "ext-simplexml": "*",
+    "ext-json": "*"
   },
   "autoload": {
     "classmap": [
