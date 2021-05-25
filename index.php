@@ -112,9 +112,9 @@ $analyze_results = isset($_COOKIE[$textHash]) ? json_decode($_COOKIE[$textHash],
 ];
 
 // setting cookie
-if(!isset($_COOKIE[$textHash])) {
+if(!isset($_COOKIE[$textHash]) && !empty($text)) {
     $result = json_encode($analyze_results);
-    setcookie($textHash, $result, time() + (86400 * 30), "/", false, true);
+    setcookie($textHash, $result, time() + (86400 * 30), "/" , null, null, true);
 }
 
 ?>
