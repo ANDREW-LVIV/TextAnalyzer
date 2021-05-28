@@ -91,11 +91,10 @@ class Analyzer
     }
 
     arsort($unique);
-    $max_value = $unique ? max($unique) : null;
 
     $array = [];
     foreach ($unique as $character => $number) {
-      $percentage = round($number / $max_value * 100, 1);
+      $percentage = round($number / array_sum($unique) * 100, 1);
       $character = str_replace(" ", 'space', $character);
       $array[] = [
         'character' => $character,

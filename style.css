@@ -45,7 +45,10 @@ textarea {
     box-shadow: 0px 1px 3px #bbb;
 }
 
-input[type="submit"] {
+input[type="submit"],
+input[type="file"],
+input[type="text"],
+select {
     border: none;
     background-color: lightgrey;
     color: #666;
@@ -58,6 +61,16 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: silver;
+}
+
+input[type="file"] {
+    padding: 7px;
+    margin-bottom: 4px;
+}
+
+input[type="text"] {
+    background-color: white;
+    text-transform: unset;
 }
 
 textarea, input:focus {
@@ -95,4 +108,8 @@ table, tr, td {
     text-align: center;
     padding: 3px 10px;
     margin-top: 5px;
+}
+
+.error {
+    color: red;
 }

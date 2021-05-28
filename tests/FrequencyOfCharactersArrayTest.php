@@ -26,82 +26,82 @@ class FrequencyOfCharactersArrayTest extends TestCase
           [
             'character' => 'space',
             'number' => 4,
-            'percentage' => 100,
+            'percentage' => 17.4,
           ],
           [
             'character' => 'В',
             'number' => 2,
-            'percentage' => 50,
+            'percentage' => 8.7,
           ],
           [
             'character' => 'І',
             'number' => 2,
-            'percentage' => 50,
+            'percentage' => 8.7,
           ],
           [
             'character' => 'Е',
             'number' => 2,
-            'percentage' => 50,
+            'percentage' => 8.7,
           ],
           [
             'character' => 'Т',
             'number' => 2,
-            'percentage' => 50,
+            'percentage' => 8.7,
           ],
           [
             'character' => 'Л',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => 'Ь',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => '-',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => 'Ц',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => 'К',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => 'Р',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => 'У',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => 'М',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => 'С',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => 'О',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ],
           [
             'character' => '!',
             'number' => 1,
-            'percentage' => 25,
+            'percentage' => 4.3,
           ]
         ]
       ],
